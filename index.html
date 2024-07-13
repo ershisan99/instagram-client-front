@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<style>
+    :root {
+        color-scheme: dark;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+</style>
+<body>
+<div>
+    <form action="/auth/login" method="POST">
+        <div>
+            <label for="user">Username</label>
+            <input name="user" id="user">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input name="password" id="password">
+        </div>
+        <button>Send</button>
+    </form>
+</div>
+<script>
+    const formElement = document.querySelector('form')
+    formElement.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const formData = new FormData(formElement)
+        const data = Object.fromEntries(formData)
+        console.log(data)
+    })
+</script>
+</body>
+</html>
