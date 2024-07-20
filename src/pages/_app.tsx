@@ -1,11 +1,21 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { wrapper } from '@/store'
+import { Provider } from 'react-redux'
+import TimeAgo from 'javascript-time-ago'
 
-export default function App({ Component, pageProps }: AppProps) {
+import en from 'javascript-time-ago/locale/en'
+
+TimeAgo.addDefaultLocale(en)
+
+export default function App({ Component, ...rest }: AppProps) {
+  const { store, props } = wrapper.useWrappedStore(rest)
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Component {...props.pageProps} />
+      </Layout>
+    </Provider>
   )
 }
 
