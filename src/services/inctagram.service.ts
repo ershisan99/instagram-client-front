@@ -1,19 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjczNSwiaWF0IjoxNzIxNDE0NTgzLCJleHAiOjE3MjE0MTgxODN9.O1Kao-oNtMDNtCPU0-exGlif7YJegpIVPxeZm1KC758'
+import { createApi } from '@reduxjs/toolkit/query/react'
+import { baseQueryWithReauth } from '@/services/inctagram.fetch-base-query'
 
 export const inctagramService = createApi({
   // keepUnusedDataFor: 0,
   tagTypes: ['UserProfile', 'PublicPosts'],
   reducerPath: 'inctagramService',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://inctagram.work/api',
-    prepareHeaders: headers => {
-      headers.set('Authorization', `Bearer ${token}`)
-      return headers
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
   endpoints: builder => ({
     uploadImage: builder.mutation<any, { files: FileList }>({
       query({ files }) {

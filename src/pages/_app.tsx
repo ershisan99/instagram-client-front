@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import TimeAgo from 'javascript-time-ago'
 
 import en from 'javascript-time-ago/locale/en'
+import { Toaster } from 'sonner'
 
 TimeAgo.addDefaultLocale(en)
 
@@ -13,6 +14,7 @@ export default function App({ Component, ...rest }: AppProps) {
   return (
     <Provider store={store}>
       <Layout>
+        <Toaster />
         <Component {...props.pageProps} />
       </Layout>
     </Provider>

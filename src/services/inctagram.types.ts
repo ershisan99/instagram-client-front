@@ -55,6 +55,12 @@ export interface UpdateUserProfileArgs {
   firstName: string
   lastName: string
   city?: string
+  country?: string
   dateOfBirth?: string
   aboutMe?: string
+}
+
+export type LoginArgs = {
+  email: string
+  password: string
 }
